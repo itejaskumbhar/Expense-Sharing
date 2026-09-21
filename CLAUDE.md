@@ -77,3 +77,7 @@ receipts + CSV export.
   `Alert` / `window.confirm` (both unreliable on mobile web / iOS Safari). Web modals/detail get
   inline Cancel/Back controls (native uses the header).
 - For a dev/prod build (not Expo Go), add the `expo-contacts` config plugin to `app.json`.
+- Password reset: `(auth)/forgot-password` sends the email (`resetPasswordForEmail`); public
+  root route `reset-password` sets the new password (`updateUser`). `detectSessionInUrl` is enabled
+  on web so the recovery link's token is parsed; add `<host>/reset-password` to Supabase Redirect URLs.
+- Public (no-session) routes are gated by name in `src/app/_layout.tsx` (`about`, `reset-password`).

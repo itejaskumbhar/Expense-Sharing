@@ -70,6 +70,11 @@ export default function SignInScreen() {
         <View style={{ gap: Spacing.three }}>
           <Button title="Sign in" onPress={onSubmit} loading={loading} />
           <Button
+            title="Forgot password?"
+            variant="ghost"
+            onPress={() => router.push('/forgot-password')}
+          />
+          <Button
             title="New here? Create an account"
             variant="ghost"
             onPress={() => router.push('/sign-up')}
