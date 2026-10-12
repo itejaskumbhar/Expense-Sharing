@@ -65,6 +65,10 @@ export default function GroupDetailScreen() {
       ? balances.data.transfers
       : balances.data.directTransfers
     : [];
+  const totalSpentMinor = (expenses.data ?? []).reduce(
+    (sum, e) => sum + toMinor(Number(e.amount)),
+    0
+  );
 
   const [refreshing, setRefreshing] = useState(false);
   const onRefresh = async () => {
@@ -277,6 +281,19 @@ export default function GroupDetailScreen() {
           {/* ---------- Balances ---------- */}
           {tab === 'balances' ? (
             <View style={{ gap: Spacing.four }}>
+              <Card
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <AppText variant="body" style={{ fontWeight: '600' }}>
+                  Total spent
+                </AppText>
+                <AppText variant="heading">{formatMoney(totalSpentMinor, currency)}</AppText>
+              </Card>
+
               <View style={{ gap: Spacing.two }}>
                 <AppText variant="heading">Balances</AppText>
                 {balances.isLoading ? (
